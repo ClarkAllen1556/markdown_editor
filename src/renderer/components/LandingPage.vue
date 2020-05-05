@@ -6,6 +6,7 @@
         <span class="title">
           Welcome to your new project!
         </span>
+        <b-button variant="primary"> hello </b-button>
         <system-information></system-information>
       </div>
 

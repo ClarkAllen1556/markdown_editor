@@ -18,9 +18,14 @@ function createWindow() {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
+    height: 825,
     useContentSize: true,
-    width: 1000,
+    width: 1250,
+    // fullscreen: false,
+    // fullscreenable: false,
+    // resizable: false,
+    // transparent: false,
+    // titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: true,
       nodeIntegrationInWorker: true

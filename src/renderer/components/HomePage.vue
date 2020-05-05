@@ -1,21 +1,26 @@
 <template>
-  <div>
+  <b-container fluid class="ctn">
     <div>
       <h1> Vuepress Markdown Editor </h1>
     </div>
-    <b-nav>
-      <b-nav-item active> Posts </b-nav-item>
-      <b-nav-item> New Post </b-nav-item>
-    </b-nav>
-  </div>
+    <div>
+      <Editor> </Editor>
+    </div>
+  </b-container>
 </template>
 
 <script>
-export default {
+import Editor from './Editor.vue';
 
+export default {
+  components: {
+    Editor
+  }
 };
 </script>
 
-<style>
-
+<style scoped>
+.container-fluid {
+  margin-top: 20px;
+}
 </style>
