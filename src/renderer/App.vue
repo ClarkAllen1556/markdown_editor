@@ -6,8 +6,8 @@
 
 <script>
   export default {
-    name: 'vuepress-md_editor'
-  }
+    name: 'vuepress-md_editor',
+  };
 </script>
 
 <style>
