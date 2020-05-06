@@ -1,20 +1,27 @@
 <template>
-  <b-container fluid class="ctn">
-    <div>
-      <h1> Vuepress Markdown Editor </h1>
-    </div>
-    <div>
-      <Editor> </Editor>
-    </div>
+  <b-container fluid >
+    <b-row>
+      <b-col> <h1> Vuepress Markdown Editor </h1> </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <Editor />
+      </b-col>
+      <b-col>
+        <Sidebar />
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
 import Editor from './Editor.vue';
+import Sidebar from './Sidebar.vue';
 
 export default {
   components: {
-    Editor
+    Editor,
+    Sidebar
   }
 };
 </script>

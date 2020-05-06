@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <mavon-editor :toolbars="toolbar" :language="langauge" />
-  </div>
+  <b-container fluid>
+    <mavon-editor :toolbars="toolbar" :language="langauge" v-on:save="save"/>
+  </b-container>
 </template>
 
 <script>
@@ -36,22 +36,31 @@
           readmodel: false,
           htmlcode: true,
           help: true,
-          /* 1.3.5 */
           undo: true,
           redo: true,
           trash: false,
-          save: false,
-          /* 1.4.2 */
+          save: true,
           navigation: true,
-          /* 2.1.8 */
           alignleft: true,
           aligncenter: true,
           alignright: true,
-          /* 2.2.1 */
           subfield: true,
           preview: true
         }
       };
+    },
+    methods: {
+      save(value, render) {
+        const fs = require('fs');
+        const { dialog } = require('electron').remote;
+
+        dialog.showSaveDialog().then( res => {
+          console.info(res);
+          fs.writeFileSync(res.filePath, value);
+        }).catch( e => {
+          console.error(new Error(e));
+        })
+      }
     }
   };
 </script>
