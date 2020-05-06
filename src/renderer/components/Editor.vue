@@ -54,7 +54,16 @@
         const fs = require('fs');
         const { dialog } = require('electron').remote;
 
-        dialog.showSaveDialog().then( res => {
+        dialog.showSaveDialog({
+          title: 'Save markdown post?',
+          defaultPath: '~/Documents',
+          message: 'Please specify a name for your file and it\'s location',
+          showsTagField: false,
+          properties: [
+            'showHiddenFiles',
+            'createDirectory'
+          ]
+        }).then( res => {
           console.info(res);
           fs.writeFileSync(res.filePath, value);
         }).catch( e => {
