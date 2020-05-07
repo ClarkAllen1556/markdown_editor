@@ -6,7 +6,7 @@
           <b-icon icon="file-earmark-code" />
           Frontmatter
         </template>
-        <p>I'm the first tab</p>
+        <FmForm />
       </b-tab>
       <b-tab>
         <template v-slot:title>
@@ -25,12 +25,13 @@
 </template>
 
 <script>
-  import { TabsPlugin } from "bootstrap-vue";
-  import Vue from "vue";
-  Vue.use(TabsPlugin);
+  import FmForm from "./FrontmatterForm";
 
   export default {
-    name: "sidebar"
+    name: "Sidebar",
+    components: {
+      FmForm
+    }
   };
 </script>
 
