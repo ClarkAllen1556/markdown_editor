@@ -8,10 +8,10 @@
           </div>
         </b-row>
         <b-row>
-          <b-col cols="auto">
+          <b-col cols="8">
             <Editor />
           </b-col>
-          <b-col cols="auto">
+          <b-col cols="4">
             <Sidebar />
           </b-col>
         </b-row>
