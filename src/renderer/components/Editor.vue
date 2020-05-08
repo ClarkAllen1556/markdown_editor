@@ -1,5 +1,5 @@
 <template>
-  <mavon-editor class="mavon-editor" :toolbars="toolbar" :language="langauge" v-on:save="save" />
+  <mavon-editor class="mavon-editor" :toolbars="toolbar" :language="langauge" v-on:save="save" v-bind:value="load_file"/>
 </template>
 
 <script>
@@ -13,7 +13,8 @@
   export default {
     name: "Editor",
     props: {
-      fm_meta: String()
+      fm_meta: String(),
+      load_file: String()
     },
     data() {
       return {
@@ -66,7 +67,7 @@
           if (res.canceled) {
             throw new Error(`File not saved; canceled by user.`);
           } else if (isNullOrUndefined(res.filePath)) {
-            throw new Error(`FIle not saved; please specify a valid file name.`);
+            throw new Error(`File not saved; please specify a valid file name.`);
           }
 
           let contents = this.fm_meta + value;
@@ -82,6 +83,11 @@
           return e;
         });
       }
+    },
+    computed: {
+      // loadFile() {
+      //   console.log($refs);
+      // }
     }
   };
 </script>

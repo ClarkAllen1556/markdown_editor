@@ -7,10 +7,10 @@
     </b-row>
     <b-row>
       <b-col class="b-col" cols="8">
-        <Editor v-bind:fm_meta="getFmMeta" />
+        <Editor v-bind:fm_meta="getFmMeta" v-bind:load_file="loadFile"/>
       </b-col>
       <b-col class="b-col" cols="4">
-        <Sidebar v-on:FM_UPDATE="sidebarHandler" />
+        <Sidebar v-on:FM_UPDATE="fmHandler" v-on:P_OPEN_LOCAL="pLoadHandler"/>
       </b-col>
     </b-row>
   </b-container>
@@ -23,7 +23,8 @@
   export default {
     data() {
       return {
-        fm_meta: String()
+        fm_meta: String(),
+        loadFile: String()
       };
     },
     components: {
@@ -31,13 +32,32 @@
       Sidebar
     },
     methods: {
-      sidebarHandler(payload) {
+      fmHandler(payload) {
         this.fm_meta = `---\n${JSON.stringify(payload.value)}\n---\n`;
+      },
+
+      pLoadHandler(payload) {
+        const { dialog } = require("electron").remote;
+        const fs = require('fs');
+
+        dialog.showOpenDialog().then( (file) => {
+          if (file.canceled) throw new Error("Error loading file: Canceled by user.");
+
+          return fs.readFileSync(file.filePaths[0], 'utf-8')
+        }).then( (readData) => {
+          this.loadFile = readData;
+        }).catch( (e) => {
+          console.error(e);
+        })
       }
     },
     computed: {
       getFmMeta() {
         return this.fm_meta;
+      },
+
+      sendLoadedFile() {
+        return this.loadFile;
       }
     }
   };

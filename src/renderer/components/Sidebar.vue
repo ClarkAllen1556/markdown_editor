@@ -12,6 +12,7 @@
         <b-icon icon="newspaper" />
         Posts
       </template>
+      <b-button variant="primary" v-on:click="$emit('P_OPEN_LOCAL')"> Open </b-button>
       <b-button v-b-toggle.posts>[post info]</b-button>
       <b-collapse id="posts">
         <b-card>
