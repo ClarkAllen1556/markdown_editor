@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="submit" @reset="clear">
+    <b-form v-on:submit.prevent="submit" v-on:reset.prevent="clear">
       <b-form-group
         id="title-meta"
         label="Post Title"
@@ -51,7 +51,6 @@
         id="type-meta"
         label="Draft or Publish?"
         label-for="dp-check"
-        description="Selecting 'Publish' will make your post public."
       >
         <template v-slot:description>
           <b-form-invalid-feedback v-bind:state="state">Post will be flagged as "DRAFT"</b-form-invalid-feedback>
@@ -78,11 +77,11 @@
     data() {
       return {
         form: {
-          title: "",
-          author: "",
-          description: "",
-          date: "",
-          type: ""
+          title: String(),
+          author: String(),
+          description: String(),
+          date: Date(),
+          type: String()
         },
         options: [{ text: "Publish", value: "article" }],
         publish: []
@@ -90,11 +89,14 @@
     },
     methods: {
       submit() {
+        const { ipcRenderer, remote }= require('electron');
+
         if (this.publish[0] === "article") this.form.type = "article";
         else this.form.type = "draft";
 
-        console.log(this.form);
-        this.$emit("FM_APPLIED");
+        let fm_value = this.form;
+
+        this.$emit("FM_APPLIED", fm_value);
       },
 
       clear() {
