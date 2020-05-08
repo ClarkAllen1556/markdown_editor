@@ -76,38 +76,28 @@
     name: "FmForm",
     data() {
       return {
-        form: {
-          title: String(),
-          author: String(),
-          description: String(),
-          date: Date(),
-          type: String()
-        },
+        form: new Form(),
         options: [{ text: "Publish", value: "article" }],
         publish: []
       };
     },
     methods: {
       submit() {
-        const { ipcRenderer, remote }= require('electron');
-
         if (this.publish[0] === "article") this.form.type = "article";
         else this.form.type = "draft";
 
-        let fm_value = this.form;
-
-        this.$emit("FM_APPLIED", fm_value);
+        this.sendEvent({ event: "APPLIED", value: this.form });
       },
 
       clear() {
-        this.form.title = "";
-        this.form.author = "";
-        this.form.description = "";
-        this.form.date = "";
-        this.form.type = "";
-
+        this.form = new Form();
         this.publish = [];
-        this.$emit("FM_CLEARED");
+
+        this.sendEvent({ event: "CLEARED", value: this.form });
+      },
+
+      sendEvent (eventMeta) {
+        this.$emit("FM_UPDATE", eventMeta);
       }
     },
     computed: {
@@ -116,6 +106,23 @@
       }
     }
   };
+
+  class Form {
+    constructor (
+      title,
+      author,
+      description,
+      date,
+      type
+    ) {
+      this.title = title;
+      this.author = author;
+      this.description = description;
+      this.date = date;
+      this.type = type;
+    }
+  };
+
 </script>
 
 <style>

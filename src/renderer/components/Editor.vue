@@ -14,6 +14,9 @@
 
   export default {
     name: "Editor",
+    props: {
+      fm_meta: String
+    },
     data() {
       return {
         langauge: "en",

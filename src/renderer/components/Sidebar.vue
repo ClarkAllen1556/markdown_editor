@@ -6,7 +6,7 @@
           <b-icon icon="file-earmark-code" />
           Frontmatter
         </template>
-        <FmForm />
+        <FmForm v-on:FM_UPDATE="fmFormHandle" />
       </b-tab>
       <b-tab>
         <template v-slot:title>
@@ -29,8 +29,18 @@
 
   export default {
     name: "Sidebar",
+    props: {
+
+    },
     components: {
       FmForm
+    },
+    methods: {
+      fmFormHandle (fm_payload) {
+        console.info(JSON.stringify(fm_payload));
+
+        this.$emit("FM_UPDATE", fm_payload)
+      }
     }
   };
 </script>
