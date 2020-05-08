@@ -18,7 +18,7 @@
 
       <b-form-group
         id="author-meta"
-        label="Author:"
+        label="Author"
         label-for="author-input"
         description="Author's name"
       >

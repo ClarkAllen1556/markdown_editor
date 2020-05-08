@@ -1,7 +1,5 @@
 <template>
-  <b-row>
-    <mavon-editor :toolbars="toolbar" :language="langauge" v-on:save="save" />
-  </b-row>
+  <mavon-editor class="mavon-editor" :toolbars="toolbar" :language="langauge" v-on:save="save" />
 </template>
 
 <script>
@@ -15,7 +13,7 @@
   export default {
     name: "Editor",
     props: {
-      fm_meta: String
+      fm_meta: String()
     },
     data() {
       return {
@@ -70,7 +68,9 @@
           } else if (isNullOrUndefined(res.filePath)) {
             throw new Error(`FIle not saved; please specify a valid file name.`);
           }
-          fs.writeFile(res.filePath, value, e => {
+
+          let contents = this.fm_meta + value;
+          fs.writeFile(res.filePath, contents, e => {
             if (e) throw e;
 
             alert(`File saved: ${res.filePath}`);
@@ -86,9 +86,10 @@
   };
 </script>
 
-<style scoped>
-  .mavonEditor {
-    width: 100%;
-    height: 100%;
-  }
+<style scoped lang="scss">
+.mavon-editor[style] {
+  box-shadow: none !important;
+  height: inherit;
+}
+
 </style>
