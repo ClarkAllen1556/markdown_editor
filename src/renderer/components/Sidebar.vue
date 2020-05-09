@@ -20,6 +20,15 @@
         </b-card>
       </b-collapse>
     </b-tab>
+    <b-tab>
+      <template v-slot:title>
+        <b-icon icon="box-arrow-in-up-right" />
+        Push
+      </template>
+      <b-button v-on:click="pushPost">
+        Push
+      </b-button>
+    </b-tab>
   </b-tabs>
 </template>
 
@@ -37,6 +46,16 @@
         console.info(JSON.stringify(fm_payload));
 
         this.$emit("FM_UPDATE", fm_payload);
+      },
+      async pushPost () {
+        const simpleGit = require("simple-git/promise")("../../../_local_posts/.");
+
+        await simpleGit.branch()
+        await simpleGit.init()
+        await simpleGit.add("./*")
+        await simpleGit.addRemote('origin', 'git@github.com:ClarkAllen1556/basic_vue_blog.git')
+        await simpleGit.push(['-u', 'origin', 'master']);
+        console.log("done")
       }
     }
   };

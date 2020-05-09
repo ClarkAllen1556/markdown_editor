@@ -2,7 +2,7 @@
   <b-container fluid="xl">
     <b-row>
       <div>
-        <h1>Markdown Editor</h1>
+        <h1>Vuepress MD</h1>
       </div>
     </b-row>
     <b-row>
