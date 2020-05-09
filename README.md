@@ -5,9 +5,11 @@
 ## Build status
 
 * Dev
+
 [![Build Status](https://travis-ci.org/ClarkAllen1556/markdown_editor.svg?branch=dev)](https://travis-ci.org/ClarkAllen1556/markdown_editor)
 
 * Master
+
 [![Build Status](https://travis-ci.org/ClarkAllen1556/markdown_editor.svg?branch=master)](https://travis-ci.org/ClarkAllen1556/markdown_editor)
 
 ## Build Setup
