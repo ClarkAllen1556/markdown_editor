@@ -2,21 +2,29 @@
 
 > An interface to automate page-edits for vuepress markdown
 
-#### Build Setup
+## Build status
+
+* Dev
+[![Build Status](https://travis-ci.org/ClarkAllen1556/markdown_editor.svg?branch=dev)](https://travis-ci.org/ClarkAllen1556/markdown_editor)
+
+* Master
+[![Build Status](https://travis-ci.org/ClarkAllen1556/markdown_editor.svg?branch=master)](https://travis-ci.org/ClarkAllen1556/markdown_editor)
+
+## Build Setup
 
 ``` bash
 # install dependencies
-npm install
+yarn
 
 # serve with hot reload at localhost:9080
-npm run dev
+yarn dev
 
 # build electron application for production
-npm run build
+yarn build
 
 
 # lint all JS/Vue component files in `src/`
-npm run lint
+yarn lint
 
 ```
 
